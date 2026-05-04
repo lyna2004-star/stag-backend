@@ -17,20 +17,23 @@ app.use(cors({
 
 // ================== DB ==================
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "2004",
-  database: "stag"
+  host: "mysql-1d6f3895-kitounilina180-638c.l.aivencloud.com",
+  user: "avnadmin",
+  password: "AVNS_uD_WKF1fYqiQQbQ8x9C",
+  database: "defaultdb",
+  port: 13928,
+  ssl: {
+    rejectUnauthorized: false // هذا السطر ضروري جداً للاتصال بسيرفر Aiven
+  }
 });
 
 db.connect(err => {
   if (err) {
-    console.log("Error:", err);
+    console.log("❌ Error connecting to Aiven:", err.message);
   } else {
-    console.log("MySQL connected ✅");
+    console.log("MySQL Aiven Connected ✅");
   }
 });
-
 // ================== REGISTER ==================
 app.post("/register", (req, res) => {
   const { name, email, password, role } = req.body;
@@ -564,6 +567,8 @@ app.get("/conventions/:id/pdf", verifyToken, (req, res) => {
   });
 });
 // ================== SERVER ==================
-app.listen(3000, () => {
-  console.log("Server running on port 3000");
+const PORT = process.env.PORT || 3000; 
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT} 🚀`);
 });
