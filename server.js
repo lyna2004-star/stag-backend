@@ -10,7 +10,7 @@ const fs = require("fs");
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: "https://stag-frontend-lyna2004-stars-projects.vercel.app", // رابطك من الصورة
+  origin:"*",
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
