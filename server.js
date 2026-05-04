@@ -1,6 +1,7 @@
 console.log("START 🚀");
 
 const express = require("express");
+const cors = require('cors');
 const mysql = require("mysql2");
 const jwt = require("jsonwebtoken");
 const PDFDocument = require("pdfkit");
@@ -8,7 +9,6 @@ const fs = require("fs");
 
 const app = express();
 app.use(express.json());
-const cors = require("cors");
 app.use(cors({
   origin: "https://stag-frontend-lyna2004-stars-projects.vercel.app", // رابطك من الصورة
   methods: ["GET", "POST", "PUT", "DELETE"],
